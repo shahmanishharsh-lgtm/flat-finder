@@ -102,9 +102,23 @@ def main():
     (OUT / "osm_areas.geojson").write_text(json.dumps({"type": "FeatureCollection", "features": feats}))
     print("areas", len(feats))
 
-    blds = overpass(f'[out:json][timeout:280];way["building"]{bb};out geom;', "buildings")
+    # buildings in tiles: one query for a whole city box is too heavy for public Overpass servers
+    tiles = int(CITIES[CITY].get("osm_tiles", 1))
+    elements, seen = [], set()
+    for i in range(tiles):
+        for j in range(tiles):
+            ts, tn = s + (n - s) * i / tiles, s + (n - s) * (i + 1) / tiles
+            tw, te = w + (e - w) * j / tiles, w + (e - w) * (j + 1) / tiles
+            name = "buildings" if tiles == 1 else f"buildings_{i}_{j}"
+            part = overpass(f'[out:json][timeout:280];way["building"]({ts},{tw},{tn},{te});out geom;', name)
+            for el in part["elements"]:
+                if el["id"] not in seen:
+                    seen.add(el["id"])
+                    elements.append(el)
+            if tiles > 1:
+                print(f"building tile {i * tiles + j + 1}/{tiles * tiles}: {len(elements)} so far", flush=True)
     bf = []
-    for el in blds["elements"]:
+    for el in elements:
         if "geometry" not in el:
             continue
         r = _pts(el["geometry"])

@@ -1,5 +1,6 @@
 {
-  "gurgaon": { "name": "Gurugram", "magicbricks": "gurgaon", "bbox": [28.33, 76.88, 28.55, 77.16], "center": [77.065, 28.425], "zoom": 12.4 },
-  "bangalore": { "name": "Bengaluru", "magicbricks": "bangalore", "bbox": [12.80, 77.40, 13.20, 77.80], "center": [77.60, 12.97], "zoom": 11.4 },
-  "mumbai": { "name": "Mumbai", "magicbricks": "mumbai", "bbox": [18.89, 72.77, 19.30, 73.05], "center": [72.88, 19.08], "zoom": 11.4 }
+  "gurgaon": { "name": "Gurugram", "magicbricks": "gurgaon", "bbox": [28.33, 76.88, 28.55, 77.16], "center": [77.065, 28.425], "zoom": 12.4, "rera": "HRERA Gurugram" },
+  "navi-mumbai": { "name": "Navi Mumbai", "magicbricks": "navi-mumbai", "bbox": [18.82, 72.92, 19.20, 73.20], "center": [73.05, 19.04], "zoom": 11.8, "rera": "MahaRERA", "osm_tiles": 4 },
+  "bangalore": { "name": "Bengaluru", "magicbricks": "bangalore", "bbox": [12.80, 77.40, 13.20, 77.80], "center": [77.60, 12.97], "zoom": 11.4, "rera": "RERA Karnataka" },
+  "mumbai": { "name": "Mumbai", "magicbricks": "mumbai", "bbox": [18.89, 72.77, 19.30, 73.05], "center": [72.88, 19.08], "zoom": 11.4, "rera": "MahaRERA" }
 }
