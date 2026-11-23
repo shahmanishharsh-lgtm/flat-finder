@@ -4,6 +4,34 @@ Every housing society in a city on one night map. Set the smallest bedroom you c
 
 Gurugram is first: about 2,700 projects from Magicbricks, building outlines from OpenStreetMap, and a set of societies verified by reading builder brochures and HRERA plans.
 
+## Navi Mumbai (this fork)
+
+This fork adds **Navi Mumbai**: 8,309 Magicbricks projects, of which **7,895 societies are on the map** (108 had no location). That covers 9,485 homes for sale and 1,833 for rent, with distances to 580 parks, 415 hospitals, 223 schools, 97 malls and supermarkets, 31 rail stations and 6 metro stations from OpenStreetMap.
+
+| Area | Societies |
+|---|---|
+| Kharghar | 1,051 |
+| Ulwe | 938 |
+| Panvel | 919 |
+| Kamothe | 541 |
+| Kopar Khairane | 462 |
+| Vashi | 437 |
+| Nerul | 410 |
+| Taloja | 385 |
+| Airoli | 364 |
+| Karanjade | 330 |
+
+Open it with `?city=navi-mumbai`, or pick it from the city menu at the top left.
+
+What changed to make it work:
+- `data/cities.json`: Navi Mumbai's map box, Magicbricks slug and RERA authority (MahaRERA).
+- `pipeline/build_city.py`: projects were kept only inside fixed Gurugram coordinates; each city now uses its own box.
+- `pipeline/osm_fetch.py`: building outlines can be fetched in tiles (`"osm_tiles": 4`), because one query for the whole city timed out on every public Overpass server.
+
+Not done yet for Navi Mumbai: no bedroom sizes have been read from floor plans or MahaRERA filings (the OCR scripts need macOS, and `hrera.py` covers Haryana only), so the smallest-bedroom filter uses the cautious estimate from unit size. Most towers are drawn from the listed tower count ("approximate shape"), since few Navi Mumbai societies are outlined in OpenStreetMap.
+
+Run it locally: `cd web && npm install && npm run dev`, then open `http://localhost:5173/?city=navi-mumbai`.
+
 ## What the colours mean
 
 - **Bright**: matches your search.
